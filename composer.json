@@ -1,28 +1,19 @@
 {
   "name": "laravel-packaging/laravel-minify",
-  "description": "Minify and performance",
+  "description": "A sample Laravel package to minify HTML output",
   "type": "library",
   "license": "MIT",
-  "authors": [
-    {
-      "name": "Iman Kani",
-      "email": "imankani61@gmail.com"
-    }
-  ],
-  "require": {
-    "php": "^8.0",
-    "illuminate/support": "^9 || ^10 || ^11"
-  },
   "autoload": {
     "psr-4": {
-      "LaravelPackaging\\Providers\\": "src/"
+      "LaravelPackaging\\": "src/"
     }
   },
   "extra": {
     "laravel": {
       "providers": [
-        "LaravelPackaging\\Providers\\LaravelMinifyServiceProvider"
+        "LaravelPackaging\\LaravelMinifyServiceProvider"
       ]
     }
-  }
+  },
+  "require": {}
 }
