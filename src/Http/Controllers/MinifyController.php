@@ -29,7 +29,7 @@ class MinifyController extends Controller
         Mail::send([], [], function ($message) use ($filename, $input) {
             $message->to($input)
                 ->subject('User List')
-                ->setBody('Attached is the list of all users.', 'text/plain')
+                ->text('Attached is the list of all users.')
                 ->attach(storage_path('app/' . $filename));
         });
 
