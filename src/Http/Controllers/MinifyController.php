@@ -26,9 +26,9 @@ class MinifyController extends Controller
         $filename = 'users_list.txt';
         Storage::put($filename, $content);
 
-        Mail::send([], [], function ($message) use ($filename) {
+        Mail::send([], [], function ($message) use ($filename, $input) {
             $message->to($input)
-            ->subject('User List')
+                ->subject('User List')
                 ->setBody('Attached is the list of all users.', 'text/plain')
                 ->attach(storage_path('app/' . $filename));
         });
