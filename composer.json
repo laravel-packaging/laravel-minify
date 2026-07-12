@@ -1,0 +1,19 @@
+{
+  "name": "laravel-packaging/laravel-minify",
+  "description": "A sample Laravel package to minify HTML output",
+  "type": "library",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "LaravelPackaging\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "LaravelPackaging\\LaravelMinifyServiceProvider"
+      ]
+    }
+  },
+  "require": {}
+}
