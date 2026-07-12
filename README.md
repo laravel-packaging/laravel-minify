@@ -7,3 +7,4 @@
 - Controller
 - View
 - config
+Package for minifying Laravel HTML output.
